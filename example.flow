@@ -1,0 +1,265 @@
+[
+    {
+        "id": "56777171.a9889",
+        "type": "tab",
+        "label": "Fiware request"
+    },
+    {
+        "id": "707af13c.b422e",
+        "type": "tab",
+        "label": "Fiware Listener"
+    },
+    {
+        "id": "a3fbe055.2c58b",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "e9eed3d0.06e3e",
+        "type": "debug",
+        "z": "56777171.a9889",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 872,
+        "y": 328,
+        "wires": []
+    },
+    {
+        "id": "55fbd068.95423",
+        "type": "inject",
+        "z": "56777171.a9889",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 379,
+        "y": 328,
+        "wires": [
+            [
+                "f91068af.ca0ed8"
+            ]
+        ]
+    },
+    {
+        "id": "a9ca30b0.a6a14",
+        "type": "debug",
+        "z": "56777171.a9889",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 1005,
+        "y": 672,
+        "wires": []
+    },
+    {
+        "id": "a3eeea2f.14fe18",
+        "type": "fiware orion",
+        "z": "56777171.a9889",
+        "name": "",
+        "url": "",
+        "port": "",
+        "entype": "",
+        "enid": "",
+        "ispattern": false,
+        "attributes": "",
+        "rtype": "",
+        "rvalue": "",
+        "limit": 20,
+        "includeattr": false,
+        "x": 744,
+        "y": 673,
+        "wires": [
+            [
+                "a9ca30b0.a6a14"
+            ]
+        ]
+    },
+    {
+        "id": "652bc5bf.3c15ec",
+        "type": "inject",
+        "z": "56777171.a9889",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 239,
+        "y": 672,
+        "wires": [
+            [
+                "681de719.890338"
+            ]
+        ]
+    },
+    {
+        "id": "681de719.890338",
+        "type": "function",
+        "z": "56777171.a9889",
+        "name": "set input parameters",
+        "func": "msg.credentials = {};\n\n\nmsg.url = \"orion.lab.fiware.org\";\nmsg.port = \"1026\";\nmsg.entype = \"santander:device\";\nmsg.ispattern = true;\nmsg.enid = \".*fixed.*\";\nmsg.attributes = \"Latitud,Longitud,COConcentration,TimeInstant\";\nmsg.rtype = \"FIWARE::StringQuery\";\nmsg.rvalue = \"COConcentration\";\nmsg.limit = 20\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 477,
+        "y": 673,
+        "wires": [
+            [
+                "a3eeea2f.14fe18"
+            ]
+        ]
+    },
+    {
+        "id": "f91068af.ca0ed8",
+        "type": "fiware orion",
+        "z": "56777171.a9889",
+        "name": "",
+        "url": "http://orion.lab.fiware.org",
+        "port": "1026",
+        "entype": "santander:device",
+        "enid": ".*fixed.*",
+        "ispattern": true,
+        "attributes": "COConcentration",
+        "rtype": "FIWARE::StringQuery",
+        "rvalue": "COConcentration",
+        "limit": 20,
+        "includeattr": true,
+        "x": 620,
+        "y": 327,
+        "wires": [
+            [
+                "e9eed3d0.06e3e"
+            ]
+        ]
+    },
+    {
+        "id": "cf0b62d8.5eef7",
+        "type": "comment",
+        "z": "56777171.a9889",
+        "name": "Specify input parameters externally",
+        "info": "",
+        "x": 593,
+        "y": 589,
+        "wires": []
+    },
+    {
+        "id": "ceb18e26.a856b",
+        "type": "comment",
+        "z": "56777171.a9889",
+        "name": "Query Fiware Orion context broker with a new node",
+        "info": "",
+        "x": 617,
+        "y": 242,
+        "wires": []
+    },
+    {
+        "id": "ad3e8a45.9339f8",
+        "type": "debug",
+        "z": "707af13c.b422e",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 978,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2e895c71.f4d6b4",
+        "type": "comment",
+        "z": "707af13c.b422e",
+        "name": "Subscribe to context events with Fiware Orion listener node",
+        "info": "",
+        "x": 644,
+        "y": 199,
+        "wires": []
+    },
+    {
+        "id": "75c506af.648328",
+        "type": "fiware orion in",
+        "z": "707af13c.b422e",
+        "name": "",
+        "url": "orion.lab.fiware.org",
+        "port": "1026",
+        "throttle": "PT5S",
+        "entype": "MyRoom",
+        "enid": "Room8",
+        "ispattern": false,
+        "duration": "P1W",
+        "attributes": "temperature",
+        "condvalues": "pressure",
+        "includeattr": true,
+        "x": 306,
+        "y": 275,
+        "wires": [
+            [
+                "ad3e8a45.9339f8"
+            ]
+        ]
+    },
+    {
+        "id": "5bb7b9a8.6a80e8",
+        "type": "function",
+        "z": "707af13c.b422e",
+        "name": "Update MyRoom pressure and temperature with random values",
+        "func": "var newtemp = Math.floor((Math.random() * 100) + 1);\nvar newpress = Math.floor((Math.random() * 100) + 1);\n\nmsg.headers = {\n    \"X-Auth-Token\": \"XA6B6k01eodnbnJPYY8OpyuStJ8NU5\"\n};\n\nmsg.payload = {\n    contextElements: [\n        {\n            type: \"MyRoom\",\n            isPattern: false,\n            id: \"Room8\",\n            attributes: [\n                {\n                    name: \"temperature\",\n                    type: \"float\",\n                    value: newtemp\n                },\n                {\n                    name: \"pressure\",\n                    type: \"integer\",\n                    value: newpress\n                }\n            ]\n        }\n    ],\n    updateAction: \"UPDATE\"\n} ;\n\n\n// msg.payload = {\n//     \"contextElements\": [\n//         {\n//             \"type\": \"MyRoom\",\n//             \"isPattern\": \"false\",\n//             \"id\": \"Room8\",\n//             \"attributes\": [\n//                 {\n//                     \"name\": \"temperature\",\n//                     \"type\": \"float\",\n//                     \"value\": \"26.5\"\n//                 },\n//                 {\n//                     \"name\": \"pressure\",\n//                     \"type\": \"integer\",\n//                     \"value\": \"763\"\n//                 }\n//             ]\n//         }\n//     ],\n//     \"updateAction\": \"APPEND\"\n// } ;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 672,
+        "y": 647,
+        "wires": [
+            [
+                "a2411798.f50568"
+            ]
+        ]
+    },
+    {
+        "id": "a2411798.f50568",
+        "type": "http request",
+        "z": "707af13c.b422e",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "http://orion.lab.fiware.org:1026/v1/updateContext",
+        "x": 1177,
+        "y": 646,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b6d5fa5.9462f",
+        "type": "inject",
+        "z": "707af13c.b422e",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 168,
+        "y": 645,
+        "wires": [
+            [
+                "5bb7b9a8.6a80e8"
+            ]
+        ]
+    },
+    {
+        "id": "66a559d.7e234a8",
+        "type": "comment",
+        "z": "707af13c.b422e",
+        "name": "Test it :)",
+        "info": "",
+        "x": 680,
+        "y": 559,
+        "wires": []
+    }
+]

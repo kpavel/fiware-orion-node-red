@@ -1,0 +1,30 @@
+{
+  "readmeFilename": "README.md",
+  "author": {
+    "name": "Pavel Kravchenko",
+    "email": "kpavel@il.ibm.com"
+  },
+  "name": "node-red-contrib-fiware-orion",
+  "description": "Fiware orion context broker subscribe, request and pdate nodes. \n\nThose Node-RED nodes can run only in the IBM Bluemix environment",
+  "version": "0.1.4",
+  "keywords": [
+    "node-red"
+  ],
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "media-typer": "0.3.0",
+    "raw-body": "2.1.5",
+    "is-utf8": "0.2.1",
+    "net": "x",
+    "when": "~3.x"
+  },
+  "engines": {
+  	"node": "0.10.x"
+  },
+  "license": "Apache",
+  "node-red": {
+    "nodes": {
+      "orion": "application/orion.js"
+    }
+  }
+}
