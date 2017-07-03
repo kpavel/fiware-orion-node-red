@@ -5,10 +5,11 @@
     "email": "kpavel@il.ibm.com"
   },
   "name": "node-red-contrib-fiware-orion",
-  "description": "Fiware orion context broker subscribe, request and pdate nodes. \n\nThose Node-RED nodes can run only in the IBM Bluemix environment",
-  "version": "0.1.4",
+  "description": "Fiware orion context broker subscribe and request nodes.",
+  "version": "0.2.0",
   "keywords": [
-    "node-red"
+    "node-red",
+    "fiware"
   ],
   "dependencies": {
     "body-parser": "1.15.0",
