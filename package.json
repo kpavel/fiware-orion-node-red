@@ -13,14 +13,15 @@
   ],
   "dependencies": {
     "body-parser": "1.15.0",
-    "media-typer": "0.3.0",
-    "raw-body": "2.1.5",
+    "follow-redirects": "^1.2.4",
     "is-utf8": "0.2.1",
+    "media-typer": "0.3.0",
     "net": "x",
+    "raw-body": "2.1.5",
     "when": "~3.x"
   },
   "engines": {
-  	"node": "0.10.x"
+    "node": "0.10.x"
   },
   "license": "Apache",
   "node-red": {
